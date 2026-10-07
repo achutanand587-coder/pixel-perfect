@@ -14,7 +14,7 @@ import type { PaymentMethod } from "@/lib/parking/types";
 import { EmptyState, PageHeader, PageSkeleton, Panel, PaymentBadge, Plate, Row, fmtTime, vehicleMeta } from "@/components/parking/ui";
 
 export const Route = createFileRoute("/exit")({
-  validateSearch: (s: Record<string, unknown>) => ({ id: typeof s.id === "string" ? s.id : undefined }),
+  validateSearch: (s: Record<string, unknown>): { id?: string } => ({ id: typeof s.id === "string" ? s.id : undefined }),
   head: () => ({
     meta: [
       { title: "Exit & Billing — Smart Parking Management System" },

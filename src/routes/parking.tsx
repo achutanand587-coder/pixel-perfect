@@ -11,7 +11,7 @@ import { EmptyState, PageHeader, PageSkeleton, Panel, Plate, Row, SlotStatusBadg
 import { Legend, ZoneBlock } from "@/components/parking/SlotMap";
 
 export const Route = createFileRoute("/parking")({
-  validateSearch: (s: Record<string, unknown>) => ({ highlight: typeof s.highlight === "string" ? s.highlight : undefined }),
+  validateSearch: (s: Record<string, unknown>): { highlight?: string } => ({ highlight: typeof s.highlight === "string" ? s.highlight : undefined }),
   head: () => ({
     meta: [
       { title: "Live Parking Map — Smart Parking Management System" },

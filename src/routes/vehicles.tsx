@@ -9,7 +9,7 @@ import { computeBill, formatDuration, inr, normalizePlate } from "@/lib/parking/
 import { EmptyState, PageHeader, PageSkeleton, Panel, PaymentBadge, Plate, Row, fmtTime, vehicleMeta } from "@/components/parking/ui";
 
 export const Route = createFileRoute("/vehicles")({
-  validateSearch: (s: Record<string, unknown>) => ({ plate: typeof s.plate === "string" ? s.plate : undefined }),
+  validateSearch: (s: Record<string, unknown>): { plate?: string } => ({ plate: typeof s.plate === "string" ? s.plate : undefined }),
   head: () => ({
     meta: [
       { title: "Vehicle Details — Smart Parking Management System" },
