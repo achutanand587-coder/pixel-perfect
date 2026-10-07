@@ -1,0 +1,2 @@
+- [ ] Smart parking app (all modules)
+- [x] Light colour theme everywhere
