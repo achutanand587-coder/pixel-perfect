@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EntryRouteImport } from './routes/entry'
+import { Route as ExitRouteImport } from './routes/exit'
+import { Route as HistoryRouteImport } from './routes/history'
 import { Route as ParkingRouteImport } from './routes/parking'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as VehiclesRouteImport } from './routes/vehicles'
 
 const IndexRoute = IndexRouteImport.update({
@@ -24,9 +27,24 @@ const EntryRoute = EntryRouteImport.update({
   path: '/entry',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExitRoute = ExitRouteImport.update({
+  id: '/exit',
+  path: '/exit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ParkingRoute = ParkingRouteImport.update({
   id: '/parking',
   path: '/parking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VehiclesRoute = VehiclesRouteImport.update({
@@ -38,34 +56,68 @@ const VehiclesRoute = VehiclesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/entry': typeof EntryRoute
+  '/exit': typeof ExitRoute
+  '/history': typeof HistoryRoute
   '/parking': typeof ParkingRoute
+  '/settings': typeof SettingsRoute
   '/vehicles': typeof VehiclesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/entry': typeof EntryRoute
+  '/exit': typeof ExitRoute
+  '/history': typeof HistoryRoute
   '/parking': typeof ParkingRoute
+  '/settings': typeof SettingsRoute
   '/vehicles': typeof VehiclesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/entry': typeof EntryRoute
+  '/exit': typeof ExitRoute
+  '/history': typeof HistoryRoute
   '/parking': typeof ParkingRoute
+  '/settings': typeof SettingsRoute
   '/vehicles': typeof VehiclesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/entry' | '/parking' | '/vehicles'
+  fullPaths:
+    | '/'
+    | '/entry'
+    | '/exit'
+    | '/history'
+    | '/parking'
+    | '/settings'
+    | '/vehicles'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/entry' | '/parking' | '/vehicles'
-  id: '__root__' | '/' | '/entry' | '/parking' | '/vehicles'
+  to:
+    | '/'
+    | '/entry'
+    | '/exit'
+    | '/history'
+    | '/parking'
+    | '/settings'
+    | '/vehicles'
+  id:
+    | '__root__'
+    | '/'
+    | '/entry'
+    | '/exit'
+    | '/history'
+    | '/parking'
+    | '/settings'
+    | '/vehicles'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EntryRoute: typeof EntryRoute
+  ExitRoute: typeof ExitRoute
+  HistoryRoute: typeof HistoryRoute
   ParkingRoute: typeof ParkingRoute
+  SettingsRoute: typeof SettingsRoute
   VehiclesRoute: typeof VehiclesRoute
 }
 
@@ -85,11 +137,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EntryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/exit': {
+      id: '/exit'
+      path: '/exit'
+      fullPath: '/exit'
+      preLoaderRoute: typeof ExitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/parking': {
       id: '/parking'
       path: '/parking'
       fullPath: '/parking'
       preLoaderRoute: typeof ParkingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/vehicles': {
@@ -105,7 +178,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EntryRoute: EntryRoute,
+  ExitRoute: ExitRoute,
+  HistoryRoute: HistoryRoute,
   ParkingRoute: ParkingRoute,
+  SettingsRoute: SettingsRoute,
   VehiclesRoute: VehiclesRoute,
 }
 export const routeTree = rootRouteImport
